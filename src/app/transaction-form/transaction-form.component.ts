@@ -21,6 +21,7 @@ export class TransactionFormComponent implements OnInit {
   public transactionTypes = TransactionType
   public transactionForm: FormGroup;
   public bankAccounts: BankAccount[] = [];
+  public bankAccount$ = this.bankAccountService.getBankAccounts();
   //endregion
 
 
@@ -35,9 +36,7 @@ export class TransactionFormComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.bankAccountService.getBankAccounts().subscribe((bankAccounts) => {
-      this.bankAccounts = bankAccounts;
-    });
+
   }
 
   private onSubmit(): void {

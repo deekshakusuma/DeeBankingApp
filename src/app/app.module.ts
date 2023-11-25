@@ -11,6 +11,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { ApplicationDataService } from './core/application-data.service';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,10 @@ import {MatInputModule} from '@angular/material/input';
     ReactiveFormsModule,
     MatRadioModule,
     BrowserAnimationsModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientInMemoryWebApiModule.forRoot(ApplicationDataService),
+    MatSelectModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent],
