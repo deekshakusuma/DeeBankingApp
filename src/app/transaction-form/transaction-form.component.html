@@ -1,0 +1,47 @@
+{{ transactionForm.value | json }}
+{{bankAccounts | json   }}
+
+<div class="container">
+  <form [formGroup]="transactionForm" class="form">
+    <mat-radio-group
+      aria-label="Select an option"
+      class="form-element"
+      formControlName="transaction_type"
+    >
+      <mat-label>Transaction Type</mat-label>
+      <mat-radio-button
+        *ngFor="let t of transactionTypes | keyvalue"
+        [value]="t.value"
+        >{{ t.value }}</mat-radio-button
+      >
+    </mat-radio-group>
+
+    <mat-form-field class="form-element">
+      <mat-label>Amount</mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder="Amount"
+        formControlName="amount"
+      />
+    </mat-form-field>
+
+    <input
+      type="text"
+      formControlName="source_bank_account_id"
+      placeholder="From Account"
+    />
+    <input
+      type="text"
+      formControlName="target_bank_account_id"
+      placeholder="To Account"
+    />
+    <input
+      type="text"
+      formControlName="description"
+      placeholder="description"
+    />
+    <input type="submit" value="Submit" />
+    <input type="button" value="Cancel" />
+  </form>
+</div>
