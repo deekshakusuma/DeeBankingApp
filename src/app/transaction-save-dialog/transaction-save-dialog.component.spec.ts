@@ -1,21 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TransactionListComponent } from './transaction-list.component';
+import { TransactionSaveDialogComponent } from './transaction-save-dialog.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-import { OrderByPipe } from '../pipes/order-by.pipe';
+import { BrowserModule } from '@angular/platform-browser';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
-describe('TransactionListComponent', () => {
-  let component: TransactionListComponent;
-  let fixture: ComponentFixture<TransactionListComponent>;
+describe('TransactionSaveDialogComponent', () => {
+  let component: TransactionSaveDialogComponent;
+  let fixture: ComponentFixture<TransactionSaveDialogComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TransactionListComponent, OrderByPipe],
+      declarations: [TransactionSaveDialogComponent],
       imports: [
         RouterTestingModule,
         ReactiveFormsModule,
@@ -23,9 +24,14 @@ describe('TransactionListComponent', () => {
         HttpClientTestingModule,
         BrowserAnimationsModule,
         CommonModule,
+        BrowserModule,
       ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} }
+      ]
     });
-    fixture = TestBed.createComponent(TransactionListComponent);
+    fixture = TestBed.createComponent(TransactionSaveDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -78,6 +78,76 @@
       "source_bank_account_id": null,
       "target_bank_account_id": 3,
       "description": "Repayment to John"
+    },
+    {
+      "transaction_type": "DEPOSIT",
+      "target_bank_account_id": 1,
+      "amount": 333,
+      "description": null,
+      "id": 5
+    },
+    {
+      "transaction_type": "DEPOSIT",
+      "target_bank_account_id": 1,
+      "amount": 3433,
+      "description": null,
+      "id": 6
+    },
+    {
+      "transaction_type": "DEPOSIT",
+      "target_bank_account_id": 2,
+      "amount": 3333,
+      "description": null,
+      "id": 7
+    },
+    {
+      "transaction_type": "DEPOSIT",
+      "target_bank_account_id": 2,
+      "amount": 3333,
+      "description": null,
+      "id": 8
+    },
+    {
+      "transaction_type": "DEPOSIT",
+      "target_bank_account_id": 2,
+      "amount": 3333,
+      "description": null,
+      "id": 9
+    },
+    {
+      "transaction_type": "DEPOSIT",
+      "target_bank_account_id": 1,
+      "amount": 222,
+      "description": null,
+      "id": 10
+    },
+    {
+      "transaction_type": "DEPOSIT",
+      "target_bank_account_id": 2,
+      "amount": 444,
+      "description": null,
+      "id": 11
+    },
+    {
+      "transaction_type": "DEPOSIT",
+      "target_bank_account_id": 2,
+      "amount": 444,
+      "description": null,
+      "id": 12
+    },
+    {
+      "transaction_type": "DEPOSIT",
+      "target_bank_account_id": 1,
+      "amount": 333,
+      "description": null,
+      "id": 13
+    },
+    {
+      "transaction_type": "DEPOSIT",
+      "target_bank_account_id": 1,
+      "amount": 333,
+      "description": null,
+      "id": 14
     }
   ]
 }

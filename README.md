@@ -1,5 +1,3 @@
-# Fundment Code Test
-
 ## Getting started
 
 This project is built with Node.js v18 and Angular v16.
