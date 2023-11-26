@@ -41,19 +41,23 @@
                 *ngFor="let account of bankAccounts"
                 [value]="account"
               >
-                {{ account.account_number }}, {{ account.account_holder_name }}
+                <ng-container
+                  *ngTemplateOutlet="
+                    accountTemplate;
+                    context: { account: account }
+                  "
+                ></ng-container>
               </mat-option>
-
-              <mat-error
-                *ngIf="
-                  transactionForm
-                    .get(sourceAccountFieldName)
-                    ?.hasError('required')
-                "
-              >
-                Choose From Account
-              </mat-error>
             </mat-select>
+            <mat-error
+              *ngIf="
+                transactionForm
+                  .get(sourceAccountFieldName)
+                  ?.hasError('required')
+              "
+            >
+              Choose From Account
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field
@@ -69,7 +73,12 @@
                 *ngFor="let account of bankAccounts"
                 [value]="account"
               >
-                {{ account.account_number }}, {{ account.account_holder_name }}
+                <ng-container
+                  *ngTemplateOutlet="
+                    accountTemplate;
+                    context: { account: account }
+                  "
+                ></ng-container>
               </mat-option>
             </mat-select>
 
@@ -188,4 +197,15 @@
       </mat-card-actions>
     </mat-card>
   </form>
+
+  <ng-template #accountTemplate let-account="account">
+    <span class="account-data-item"
+      >Name: {{ account.account_holder_name }}</span
+    >
+    <span class="account-data-item">Bank: {{ account.bank_name }}</span>
+    <span class="account-data-item"
+      >Account Number: {{ account.account_number }}</span
+    >
+    <span class="account-data-item">Sort Code: {{ account.sort_code }}</span>
+  </ng-template>
 </div>

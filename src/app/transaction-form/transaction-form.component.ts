@@ -212,6 +212,7 @@ export class TransactionFormComponent implements OnInit {
   }
 
   public onSubmit(): void {
+    this.transactionForm.markAllAsTouched();
     if (this.transactionForm.invalid) return;
 
     // Construct the transaction object
