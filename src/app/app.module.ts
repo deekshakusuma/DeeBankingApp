@@ -10,6 +10,9 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
+import { TransactionSaveDialogComponent } from './transaction-save-dialog/transaction-save-dialog.component';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -17,6 +20,7 @@ import { TransactionListComponent } from './transaction-list/transaction-list.co
     TransactionFormComponent,
     TransactionListComponent,
     AccountSummaryComponent,
+    TransactionSaveDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +29,7 @@ import { TransactionListComponent } from './transaction-list/transaction-list.co
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent],

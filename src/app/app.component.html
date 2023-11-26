@@ -1,5 +1,14 @@
 <div class="navbar">
   <img src="/assets/fundment-logo.svg" alt="Fundment" class="logo" />
+
+  <h1>{{title}}</h1>
+
+  <div class="navbar-right">
+    <a routerLink="/transactions" routerLinkActive="active">Transactions</a>
+    <a routerLink="/transaction-create" routerLinkActive="active">New Transaction</a>
+    </div>
 </div>
 
-<app-transaction-form></app-transaction-form>
+
+
+<router-outlet></router-outlet>

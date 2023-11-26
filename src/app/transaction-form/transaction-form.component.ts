@@ -18,6 +18,9 @@ import { TransactionFormVisibility } from './transaction-form-visibility.interfa
 import { transferAccountValidator } from './trasaction-form.validators';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { TransactionService } from '../core/transaction/transaction.service';
+import { TransactionSaveDialogComponent } from '../transaction-save-dialog/transaction-save-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-transaction-form',
@@ -29,6 +32,8 @@ export class TransactionFormComponent implements OnInit {
   private fb = inject(FormBuilder);
   private bankAccountService = inject(BankAccountService);
   private transactionService = inject(TransactionService);
+  private dialog = inject(MatDialog);
+  private router = inject(Router);
   //#endregion
 
   //#region Public Properties
@@ -39,7 +44,7 @@ export class TransactionFormComponent implements OnInit {
   public formVisibility: TransactionFormVisibility;
   public maxAmount: number = 0;
   public maxDescriptionLength: number = 20;
-  public matcher = new MyErrorStateMatcher();
+  public matcher = new TransactionFormErrorStateMatcher();
 
   //Field names for the form - to avoid magic strings
   public transactionTypeFieldName = 'transaction_type';
@@ -140,9 +145,9 @@ export class TransactionFormComponent implements OnInit {
       .get(this.fullAmountFieldName)
       ?.valueChanges.subscribe((value) => {
         const amountField = this.transactionForm.get(this.amountFieldName);
-        if(!amountField) return;
+        if (!amountField) return;
 
-        if(value === true) {
+        if (value === true) {
           amountField.setValue(null);
           amountField.disable();
           this.formVisibility.showAmount = false;
@@ -225,16 +230,45 @@ export class TransactionFormComponent implements OnInit {
     };
 
     //Call the service to create the transaction
-    this.transactionService.createTransaction(transaction).subscribe(() => {
-      
+    this.transactionService.createTransaction(transaction).subscribe({
+      next: () => this.openDialog(true),
+      error: (e) => {
+        console.error(e);
+        this.openDialog(false);
+      },
     });
   }
 
-  private onCancel(): void {}
+  /**
+   * Opens dialog to inform the user about the result of the transaction
+   * @param success State from saving of transaction
+   */
+  private openDialog(success: boolean): void {
+    const dialogRef = this.dialog.open(TransactionSaveDialogComponent, {
+      data: success,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 0) {
+        this.transactionForm
+          .get(this.transactionTypeFieldName)
+          ?.setValue(TransactionType.DEPOSIT);
+      } else {
+        this.router.navigate(['..']);
+      }
+    });
+  }
+
+  /**
+   * Handles the cancel button click event
+   */
+  public onCancel(): void {
+    this.router.navigate(['..']);
+  }
 }
 
 /** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
+export class TransactionFormErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
     control: FormControl | null,
     form: FormGroupDirective | NgForm | null
