@@ -7,6 +7,7 @@ import { MaterialModule } from '../material.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { OrderByPipe } from '../pipes/order-by.pipe';
 
 describe('TransactionListComponent', () => {
   let component: TransactionListComponent;
@@ -14,7 +15,7 @@ describe('TransactionListComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TransactionListComponent],
+      declarations: [TransactionListComponent, OrderByPipe],
       imports: [
         RouterTestingModule,
         ReactiveFormsModule,

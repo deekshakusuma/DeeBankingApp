@@ -12,6 +12,7 @@ import { TransactionListComponent } from './transaction-list/transaction-list.co
 import { TransactionSaveDialogComponent } from './transaction-save-dialog/transaction-save-dialog.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { OrderByPipe } from './pipes/order-by.pipe';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { CommonModule } from '@angular/common';
     AppComponent,
     TransactionFormComponent,
     TransactionListComponent,
-    TransactionSaveDialogComponent
+    TransactionSaveDialogComponent,
+    OrderByPipe
   ],
   imports: [
     CommonModule,

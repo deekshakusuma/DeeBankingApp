@@ -1,5 +1,5 @@
 <h2>Transactions List</h2>
-<ng-container *ngIf="dataSource$ | async as dataSource">
+<ng-container *ngIf="dataSource$ | async | orderBy: 'id':'desc'  as dataSource">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>Transaction Id</th>
