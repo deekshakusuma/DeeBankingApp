@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +12,7 @@ import { TransactionFormComponent } from './transaction-form/transaction-form.co
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { TransactionSaveDialogComponent } from './transaction-save-dialog/transaction-save-dialog.component';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { RouterModule } from '@angular/router';
     TransactionSaveDialogComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -31,7 +33,13 @@ import { RouterModule } from '@angular/router';
     MaterialModule,
     RouterModule
   ],
-  providers: [],
+  providers: [{
+    provide: LOCALE_ID,
+    useValue: 'en-GB'
+  }, {
+    provide: DEFAULT_CURRENCY_CODE,
+    useValue: 'GBP'
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

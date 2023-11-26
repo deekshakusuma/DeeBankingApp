@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, LOCALE_ID, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -21,6 +21,7 @@ import { TransactionService } from '../core/transaction/transaction.service';
 import { TransactionSaveDialogComponent } from '../transaction-save-dialog/transaction-save-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { getCurrencySymbol, getLocaleCurrencyCode, getLocaleId } from '@angular/common';
 
 @Component({
   selector: 'app-transaction-form',
