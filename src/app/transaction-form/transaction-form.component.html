@@ -93,6 +93,17 @@
               Transfer To Account must be from the same client as the Transfer
               From Account
             </mat-error>
+
+            <mat-error
+              *ngIf="
+                transactionForm
+                  .get(targetAccountFieldName)
+                  ?.hasError('transferAccountSame')
+              "
+            >
+              Transfer To Account cannot be the same as the Transfer From
+              Account
+            </mat-error>
           </mat-form-field>
         </ng-container>
 
@@ -173,7 +184,7 @@
         >
           Submit
         </button>
-        <button mat-raised-button (click)="onCancel()" >Cancel</button>
+        <button mat-raised-button (click)="onCancel()">Cancel</button>
       </mat-card-actions>
     </mat-card>
   </form>

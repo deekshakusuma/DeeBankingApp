@@ -1,4 +1,4 @@
-import { Component, LOCALE_ID, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -20,9 +20,10 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { TransactionService } from '../core/transaction/transaction.service';
 import { TransactionSaveDialogComponent } from '../transaction-save-dialog/transaction-save-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
-import { getCurrencySymbol, getLocaleCurrencyCode, getLocaleId } from '@angular/common';
+import { Router } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-transaction-form',
   templateUrl: './transaction-form.component.html',
@@ -98,7 +99,7 @@ export class TransactionFormComponent implements OnInit {
   public onTransactionTypeChange(): void {
     this.transactionForm
       .get(this.transactionTypeFieldName)
-      ?.valueChanges.subscribe((transactionType: TransactionType) => {
+      ?.valueChanges.pipe(untilDestroyed(this)).subscribe((transactionType: TransactionType) => {
         this.formVisibility = this.resetFormVisibility();
         this.resetFormForTransactionType();
         //this.transactionForm.get(this.fullAmountFieldName)?.reset(false);
@@ -133,7 +134,7 @@ export class TransactionFormComponent implements OnInit {
   private onSourceAccountChange(): void {
     this.transactionForm
       .get(this.sourceAccountFieldName)
-      ?.valueChanges.subscribe((sourceAccount: BankAccount) => {
+      ?.valueChanges.pipe(untilDestroyed(this)).subscribe((sourceAccount: BankAccount) => {
         this.setMaximunAmountValidator();
       });
   }
@@ -144,7 +145,7 @@ export class TransactionFormComponent implements OnInit {
   private onFullAmountChange(): void {
     this.transactionForm
       .get(this.fullAmountFieldName)
-      ?.valueChanges.subscribe((value) => {
+      ?.valueChanges.pipe(untilDestroyed(this)).subscribe((value) => {
         const amountField = this.transactionForm.get(this.amountFieldName);
         if (!amountField) return;
 
@@ -231,7 +232,7 @@ export class TransactionFormComponent implements OnInit {
     };
 
     //Call the service to create the transaction
-    this.transactionService.createTransaction(transaction).subscribe({
+    this.transactionService.createTransaction(transaction).pipe(untilDestroyed(this)).subscribe({
       next: () => this.openDialog(true),
       error: (e) => {
         console.error(e);
@@ -249,7 +250,7 @@ export class TransactionFormComponent implements OnInit {
       data: success,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().pipe(untilDestroyed(this)).subscribe((result) => {
       if (result === 0) {
         this.transactionForm
           .get(this.transactionTypeFieldName)

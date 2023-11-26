@@ -148,6 +148,50 @@
       "amount": 333,
       "description": null,
       "id": 14
+    },
+    {
+      "transaction_type": "TRANSFER",
+      "source_bank_account_id": 1,
+      "target_bank_account_id": 5,
+      "amount": 33,
+      "description": null,
+      "id": 15
+    },
+    {
+      "transaction_type": "TRANSFER",
+      "source_bank_account_id": 1,
+      "target_bank_account_id": 5,
+      "amount": 88,
+      "description": null,
+      "id": 16
+    },
+    {
+      "transaction_type": "DEPOSIT",
+      "target_bank_account_id": 1,
+      "amount": 444,
+      "description": null,
+      "id": 17
+    },
+    {
+      "transaction_type": "DEPOSIT",
+      "target_bank_account_id": 2,
+      "amount": 444,
+      "description": null,
+      "id": 18
+    },
+    {
+      "transaction_type": "DEPOSIT",
+      "target_bank_account_id": 3,
+      "amount": 33,
+      "description": null,
+      "id": 19
+    },
+    {
+      "transaction_type": "DEPOSIT",
+      "target_bank_account_id": 2,
+      "amount": 444,
+      "description": null,
+      "id": 20
     }
   ]
 }

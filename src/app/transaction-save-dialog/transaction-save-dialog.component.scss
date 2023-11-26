@@ -1,7 +1,9 @@
 .error-message {
-    color: --var(--error-color);    
+    color: red;    
 }
 
 .success-message {
-    color: --var(--success-color);    
+    color: green;    
+    padding-top: 10px ;
+    padding-bottom: 10px ;
 }
