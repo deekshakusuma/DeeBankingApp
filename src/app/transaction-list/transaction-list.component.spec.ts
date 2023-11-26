@@ -1,6 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TransactionListComponent } from './transaction-list.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../material.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 describe('TransactionListComponent', () => {
   let component: TransactionListComponent;
@@ -8,7 +14,15 @@ describe('TransactionListComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TransactionListComponent]
+      declarations: [TransactionListComponent],
+      imports: [
+        RouterTestingModule,
+        ReactiveFormsModule,
+        MaterialModule,
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        CommonModule,
+      ],
     });
     fixture = TestBed.createComponent(TransactionListComponent);
     component = fixture.componentInstance;
